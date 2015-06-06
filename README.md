@@ -1,15 +1,14 @@
 cleverbot
 =========
 
-A python3 binding of cleverbot wich **support special characters**
-This library lets you open chat session with cleverbot (www.cleverbot.com)
+A python3 binding of cleverbot wich **support special characters**.
 
 How to
 ------
 
-### The Binding
+### Library
 
-Example of how to use the bindings:
+Example of how to use the library:
 
 ```python
 import cleverbot
@@ -26,6 +25,11 @@ Just run
 ```bash
 python3 cleverbot.py
 ```
+
+Contribution
+------------
+
+This library is currently maintained. Pull Requests and issues are welcomed !
 
 Credits
 -------
