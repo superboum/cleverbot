@@ -5,13 +5,17 @@ A python3 binding of cleverbot wich **support special characters**.
 
 How to
 ------
+### Install
+```bash
+$ pip install .
+```
 
 ### Library
 
 Example of how to use the library:
 
 ```python
-import cleverbot
+from cleverbot import cleverbot
 
 myBot = cleverbot.Session()
 answer = myBot.Ask("Hello there")
@@ -20,10 +24,17 @@ print(answer)
 
 ### Command Line
 
-Just run
+Start from command line, exit with `bye`
 
 ```bash
-python3 cleverbot.py
+$ cleverbot
+> hello
+Hi.
+> how are you?
+I'm ok.
+> bye
+Don't leave.
+$
 ```
 
 Contribution
