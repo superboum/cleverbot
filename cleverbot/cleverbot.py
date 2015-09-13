@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import urllib.parse
 import urllib.request
 import hashlib
 import re
@@ -21,14 +22,14 @@ class Session(object):
                 self.opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(self.cj))
                 urllib.request.install_opener(self.opener)
                 urllib.request.urlopen("http://www.cleverbot.com")
-                
+
         def Send(self):
                 data=encode(self.keylist,self.arglist)
                 digest_txt=data[9:35].encode('utf-8')
                 hash=hashlib.md5(digest_txt).hexdigest()
                 self.arglist[self.keylist.index('icognocheck')]=hash
                 data=encode(self.keylist,self.arglist)
-                binary_data = data.encode('utf-8') 
+                binary_data = data.encode('utf-8')
                 req = urllib.request.Request("http://www.cleverbot.com/webservicemin", binary_data)
                 with urllib.request.urlopen(req,None,5000) as url:
                 	reply=url.read()
@@ -66,25 +67,15 @@ def parseAnswers(text):
                 i += 1
         return d
 
-def encode(keylist,arglist):
-        text=''
-        for i in range(len(keylist)):
-                k=keylist[i]; v=quote(arglist[i])
-                text+='&'+k+'='+v
-        text=text[1:]
-        return text
 
-always_safe = ('ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-               'abcdefghijklmnopqrstuvwxyz'
-               '0123456789' '_.-')
-def quote(s, safe = '/'):   #quote('abc def') -> 'abc%20def'
-        safe += always_safe
-        safe_map = {}
-        for i in range(256):
-                c = chr(i)
-                safe_map[c] = (c in safe) and c or  ('%%%02X' % i)
-        res = map(safe_map.__getitem__, s)
-        return ''.join(res)
+def encode(keylist, arglist):
+        text = ' '
+        for i in range(len(keylist)):
+                k = keylist[i]
+                v = urllib.parse.quote(arglist[i])
+                text += '&' + k + '=' + v
+        text = text[1:]
+        return text
 
 
 def main():
@@ -102,5 +93,3 @@ def main():
 
 if __name__ == "__main__":
         main()
-
-
